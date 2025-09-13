@@ -1,0 +1,453 @@
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ChevronDown, ArrowRight, Calendar, Clock, User, Search, Menu } from "lucide-react";
+
+const CarBlog = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < window.innerHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on initial load
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const categories = [
+    { id: "all", name: "All Articles" },
+    { id: "sports", name: "Sports Cars" },
+    { id: "luxury", name: "Luxury Vehicles" },
+    { id: "electric", name: "Electric Cars" },
+    { id: "classic", name: "Classic Cars" },
+    { id: "concept", name: "Concept Cars" }
+  ];
+
+  const featuredArticles = [
+    {
+      id: 1,
+      title: "The Future of Electric Supercars",
+      excerpt: "How electric technology is revolutionizing high-performance vehicles and what to expect in the coming years.",
+      category: "electric",
+      readTime: "5 min read",
+      date: "May 15, 2023",
+      author: "Sarah Johnson"
+    },
+    {
+      id: 2,
+      title: "Classic Car Restoration: A Beginner's Guide",
+      excerpt: "Essential tips and techniques for restoring vintage automobiles to their former glory.",
+      category: "classic",
+      readTime: "8 min read",
+      date: "April 28, 2023",
+      author: "Michael Chen"
+    }
+  ];
+
+  const latestArticles = [
+    {
+      id: 3,
+      title: "2023 Luxury Sedan Comparison",
+      excerpt: "We test drive the top luxury sedans of the year to help you make the right choice.",
+      category: "luxury",
+      readTime: "7 min read",
+      date: "June 2, 2023",
+      author: "Jessica Williams"
+    },
+    {
+      id: 4,
+      title: "The Art of Car Photography",
+      excerpt: "Professional tips for capturing stunning automotive photographs in any setting.",
+      category: "concept",
+      readTime: "6 min read",
+      date: "May 29, 2023",
+      author: "David Rodriguez"
+    },
+    {
+      id: 5,
+      title: "Track Day Essentials",
+      excerpt: "Everything you need to know before hitting the race track with your performance car.",
+      category: "sports",
+      readTime: "4 min read",
+      date: "May 22, 2023",
+      author: "Robert Taylor"
+    },
+    {
+      id: 6,
+      title: "Sustainable Materials in Modern Cars",
+      excerpt: "How automakers are incorporating eco-friendly materials without compromising on luxury.",
+      category: "electric",
+      readTime: "5 min read",
+      date: "May 18, 2023",
+      author: "Emily Parker"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900 overflow-hidden">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl font-bold text-blue-600"
+          >
+            Auto<span className="text-orange-500">Blog</span>
+          </motion.div>
+          
+          <div className="hidden md:flex space-x-8">
+            {categories.slice(0, 4).map((category) => (
+              <motion.a 
+                key={category.id}
+                href={`#${category.id}`}
+                whileHover={{ scale: 1.05 }}
+                className="text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                {category.name}
+              </motion.a>
+            ))}
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            <motion.button whileHover={{ scale: 1.1 }} className="p-2 text-gray-600 hover:text-blue-600">
+              <Search size={20} />
+            </motion.button>
+            <motion.button 
+              whileHover={{ scale: 1.1 }}
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Subscribe
+            </motion.button>
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 text-gray-600"
+            >
+              <Menu size={24} />
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-t"
+          >
+            <div className="container mx-auto px-4 py-4 space-y-4">
+              {categories.map((category) => (
+                <a 
+                  key={category.id}
+                  href={`#${category.id}`}
+                  className="block py-2 text-gray-700 hover:text-blue-600"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {category.name}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </nav>
+
+      {/* Hero Section with Parallax */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-purple-900/80 z-0"
+          style={{
+            backgroundImage: 'url("https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8a963ea8-1ab0-4a8c-91fc-e00a7e97bf46.png")',
+            backgroundAttachment: 'fixed',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover'
+          }}
+        />
+        
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="relative z-20 text-center text-white px-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Discover the World of <span className="text-orange-400">Automotive Excellence</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Your ultimate destination for car reviews, industry news, and automotive inspiration
+          </p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors"
+          >
+            Explore Articles
+          </motion.button>
+        </motion.div>
+
+        <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="absolute bottom-10 z-20 text-white"
+        >
+          <ChevronDown size={32} />
+        </motion.div>
+      </section>
+
+      {/* Featured Articles */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800"
+          >
+            Featured Stories
+          </motion.h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {featuredArticles.map((article, index) => (
+              <motion.div
+                key={article.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow fade-in"
+              >
+                <div className="h-64 overflow-hidden">
+                  <img 
+                    src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/caf1bf8d-0261-4e3b-b942-b81f8065d08b.png" 
+                    alt="Featured car article showcasing latest automotive technology and design"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <div className="p-6">
+                  <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
+                    {article.category}
+                  </span>
+                  <h3 className="text-xl font-bold mb-3 hover:text-blue-600 transition-colors cursor-pointer">
+                    {article.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{article.excerpt}</p>
+                  <div className="flex items-center justify-between text-sm text-gray-500">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center">
+                        <User size={16} className="mr-1" />
+                        {article.author}
+                      </div>
+                      <div className="flex items-center">
+                        <Calendar size={16} className="mr-1" />
+                        {article.date}
+                      </div>
+                      <div className="flex items-center">
+                        <Clock size={16} className="mr-1" />
+                        {article.readTime}
+                      </div>
+                    </div>
+                    <motion.button whileHover={{ x: 5 }} className="text-blue-600 hover:text-blue-800 flex items-center">
+                      Read more <ArrowRight size={16} className="ml-1" />
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Articles Grid */}
+      <section className="py-16 px-4 bg-gray-100">
+        <div className="container mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800"
+          >
+            Latest Articles
+          </motion.h2>
+          
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category) => (
+              <motion.button
+                key={category.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  activeCategory === category.id
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {category.name}
+              </motion.button>
+            ))}
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {latestArticles.map((article, index) => (
+              <motion.div
+                key={article.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 fade-in group"
+              >
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/31d19a00-1915-4a31-8f00-b1df4f104391.png" 
+                    alt="Latest car article with detailed review and analysis"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium mb-3">
+                    {article.category}
+                  </span>
+                  <h3 className="text-lg font-bold mb-2 group-hover:text-blue-600 transition-colors cursor-pointer">
+                    {article.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4">{article.excerpt}</p>
+                  <div className="flex items-center justify-between text-xs text-gray-500">
+                    <span>{article.date}</span>
+                    <motion.button whileHover={{ x: 5 }} className="text-blue-600 hover:text-blue-800 flex items-center">
+                      Read <ArrowRight size={14} className="ml-1" />
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
+        <div className="container mx-auto text-center">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-3xl md:text-4xl font-bold mb-4"
+          >
+            Stay Updated with the Automotive World
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-xl mb-8 max-w-2xl mx-auto"
+          >
+            Get the latest news, reviews, and insights delivered straight to your inbox
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="flex flex-col md:flex-row gap-4 justify-center max-w-2xl mx-auto"
+          >
+            <input 
+              type="email" 
+              placeholder="Enter your email address"
+              className="flex-1 px-6 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            />
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-full font-semibold transition-colors"
+            >
+              Subscribe Now
+            </motion.button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 px-4">
+        <div className="container mx-auto grid md:grid-cols-4 gap-8">
+          <div>
+            <h3 className="text-2xl font-bold text-blue-400 mb-4">AutoBlog</h3>
+            <p className="text-gray-400">
+              Your premier destination for automotive news, reviews, and inspiration.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Categories</h4>
+            <ul className="space-y-2">
+              {categories.slice(1).map((category) => (
+                <li key={category.id}>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    {category.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Connect With Us</h4>
+            <div className="flex space-x-4">
+              <motion.a whileHover={{ scale: 1.2 }} href="#" className="text-gray-400 hover:text-white transition-colors">
+                <span className="sr-only">Facebook</span>
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8f4d2334-7206-442a-82ba-9543b0855bf5.png" alt="Facebook social media icon" />
+              </motion.a>
+              <motion.a whileHover={{ scale: 1.2 }} href="#" className="text-gray-400 hover:text-white transition-colors">
+                <span className="sr-only">Twitter</span>
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/619c3427-1570-4e93-88b9-33c38db48dff.png" alt="Twitter social media icon" />
+              </motion.a>
+              <motion.a whileHover={{ scale: 1.2 }} href="#" className="text-gray-400 hover:text-white transition-colors">
+                <span className="sr-only">Instagram</span>
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/80ef2936-e8f5-4cf0-babc-77f3ad865cff.png" alt="Instagram social media icon" />
+              </motion.a>
+              <motion.a whileHover={{ scale: 1.2 }} href="#" className="text-gray-400 hover:text-white transition-colors">
+                <span className="sr-only">YouTube</span>
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d3033297-3efc-491c-b674-ea59200d9a45.png" alt="YouTube social media icon" />
+              </motion.a>
+            </div>
+          </div>
+        </div>
+        <div className="container mx-auto mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+          <p>© 2023 AutoBlog. All rights reserved.</p>
+        </div>
+      </footer>
+
+      <style jsx>{`
+        .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default CarBlog;
