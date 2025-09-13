@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elite Motors | Luxury Car Showroom</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -29,6 +30,78 @@
             overflow-x: hidden;
             background-color: var(--light);
             color: var(--dark);
+            background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                              url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        section {
+            position: relative;
+            padding: 100px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            transition: background 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Hero Section with Video Background */
@@ -37,6 +110,11 @@
             width: 100%;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
         }
 
         .video-container {
@@ -46,6 +124,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+            z-index: -1;
         }
 
         .video-container video {
@@ -61,17 +140,13 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
         }
 
         .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
+            max-width: 800px;
+            padding: 0 20px;
             z-index: 2;
-            width: 80%;
         }
 
         .hero-content h1 {
@@ -132,66 +207,9 @@
             }
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: background 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 15px 40px;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--secondary);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-
-        .menu-toggle {
-            display: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
         /* Showroom Section */
         .showroom {
-            padding: 100px 40px;
+            padding: 100px 0;
             background-color: var(--light);
         }
 
@@ -293,81 +311,94 @@
             color: var(--dark);
         }
 
-        /* Car Details Modal */
-        .modal {
+        /* Car Detail Pages */
+        .car-detail-page {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            overflow-y: auto;
-            padding: 40px 20px;
+            padding: 120px 0 60px;
+            min-height: 100vh;
+            background-color: var(--light);
         }
 
-        .modal-content {
-            background-color: white;
-            max-width: 900px;
-            margin: 0 auto;
+        .car-detail-page.active {
+            display: block;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: var(--secondary);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        .car-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .car-detail-gallery {
+            position: relative;
+        }
+
+        .main-car-image {
+            height: 400px;
             border-radius: 10px;
             overflow: hidden;
-            position: relative;
-            animation: modalFade 0.3s;
+            margin-bottom: 20px;
         }
 
-        @keyframes modalFade {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .car-detail-header {
-            height: 400px;
-            position: relative;
-        }
-
-        .car-detail-header img {
+        .main-car-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .car-detail-info {
-            padding: 30px;
+        .car-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .car-thumbnail {
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .car-thumbnail:hover,
+        .car-thumbnail.active {
+            opacity: 1;
+        }
+
+        .car-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .car-detail-info h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             color: var(--dark);
         }
 
         .car-detail-price {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--secondary);
             margin-bottom: 20px;
             font-weight: 600;
@@ -446,7 +477,7 @@
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 60px 40px 30px;
+            padding: 60px 0 30px;
         }
 
         .footer-content {
@@ -541,7 +572,11 @@
                 z-index: 1001;
             }
             
-            .car-detail-header {
+            .car-detail-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-car-image {
                 height: 300px;
             }
         }
@@ -562,6 +597,10 @@
             .action-buttons {
                 flex-direction: column;
             }
+            
+            .car-detail-info h2 {
+                font-size: 2rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -577,10 +616,6 @@
                 font-size: 2rem;
             }
             
-            .showroom {
-                padding: 80px 20px;
-            }
-            
             .cars-grid {
                 grid-template-columns: 1fr;
             }
@@ -589,8 +624,8 @@
                 grid-template-columns: 1fr;
             }
             
-            footer {
-                padding: 40px 20px 20px;
+            .car-thumbnails {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -603,7 +638,7 @@
             <i class="fas fa-bars"></i>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
+            <li><a href="#" class="nav-home">Home</a></li>
             <li><a href="#showroom">Showroom</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -630,153 +665,316 @@
 
     <!-- Showroom Section -->
     <section id="showroom" class="showroom">
-        <div class="section-title">
-            <h2>Our Exclusive Collection</h2>
-            <p>Browse through our hand-picked selection of the world's most desirable performance vehicles</p>
-        </div>
-        
-        <div class="cars-grid">
-            <!-- Car 1 -->
-            <div class="car-card" data-car="lamborghini">
-                <div class="car-image">
-                    <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Lamborghini Aventador SVJ in bright yellow with aggressive styling">
-                </div>
-                <div class="car-details">
-                    <h3>Lamborghini Aventador SVJ</h3>
-                    <div class="car-specs">
-                        <span><i class="fas fa-tachometer-alt"></i> 217 MPH</span>
-                        <span><i class="fas fa-bolt"></i> 759 HP</span>
-                    </div>
-                    <div class="car-price">$517,000</div>
-                    <a href="#" class="view-details">View Details</a>
-                </div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Exclusive Collection</h2>
+                <p>Browse through our hand-picked selection of the world's most desirable performance vehicles</p>
             </div>
             
-            <!-- Car 2 -->
-            <div class="car-card" data-car="ferrari">
-                <div class="car-image">
-                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80" alt="Ferrari 488 Pista in classic red with racing stripes">
-                </div>
-                <div class="car-details">
-                    <h3>Ferrari 488 Pista</h3>
-                    <div class="car-specs">
-                        <span><i class="fas fa-tachometer-alt"></i> 211 MPH</span>
-                        <span><i class="fas fa-bolt"></i> 711 HP</span>
+            <div class="cars-grid">
+                <!-- Car 1 -->
+                <div class="car-card" data-car="lamborghini">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Lamborghini Aventador SVJ in bright yellow with aggressive styling">
                     </div>
-                    <div class="car-price">$350,000</div>
-                    <a href="#" class="view-details">View Details</a>
-                </div>
-            </div>
-            
-            <!-- Car 3 -->
-            <div class="car-card" data-car="porsche">
-                <div class="car-image">
-                    <img src="https://images.unsplash.com/photo-1600259928706-4f18e30a2025?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="Porsche 911 GT3 RS in sleek white with racing details">
-                </div>
-                <div class="car-details">
-                    <h3>Porsche 911 GT3 RS</h3>
-                    <div class="car-specs">
-                        <span><i class="fas fa-tachometer-alt"></i> 193 MPH</span>
-                        <span><i class="fas fa-bolt"></i> 520 HP</span>
+                    <div class="car-details">
+                        <h3>Lamborghini Aventador SVJ</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 217 MPH</span>
+                            <span><i class="fas fa-bolt"></i> 759 HP</span>
+                        </div>
+                        <div class="car-price">$517,000</div>
+                        <a href="#" class="view-details" data-car="lamborghini">View Details</a>
                     </div>
-                    <div class="car-price">$187,500</div>
-                    <a href="#" class="view-details">View Details</a>
                 </div>
-            </div>
-            
-            <!-- Car 4 -->
-            <div class="car-card" data-car="mclaren">
-                <div class="car-image">
-                    <img src="https://images.unsplash.com/photo-1626668893630-1f7bb8945e23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="McLaren 720S in vibrant orange with dihedral doors open">
-                </div>
-                <div class="car-details">
-                    <h3>McLaren 720S</h3>
-                    <div class="car-specs">
-                        <span><i class="fas fa-tachometer-alt"></i> 212 MPH</span>
-                        <span><i class="fas fa-bolt"></i> 710 HP</span>
+                
+                <!-- Car 2 -->
+                <div class="car-card" data-car="ferrari">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80" alt="Ferrari 488 Pista in classic red with racing stripes">
                     </div>
-                    <div class="car-price">$299,000</div>
-                    <a href="#" class="view-details">View Details</a>
-                </div>
-            </div>
-            
-            <!-- Car 5 -->
-            <div class="car-card" data-car="bugatti">
-                <div class="car-image">
-                    <img src="https://images.unsplash.com/photo-1550353127-b1234b9f3a2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Bugatti Chiron in two-tone blue and black design">
-                </div>
-                <div class="car-details">
-                    <h3>Bugatti Chiron</h3>
-                    <div class="car-specs">
-                        <span><i class="fas fa-tachometer-alt"></i> 261 MPH</span>
-                        <span><i class="fas fa-bolt"></i> 1479 HP</span>
+                    <div class="car-details">
+                        <h3>Ferrari 488 Pista</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 211 MPH</span>
+                            <span><i class="fas fa-bolt"></i> 711 HP</span>
+                        </div>
+                        <div class="car-price">$350,000</div>
+                        <a href="#" class="view-details" data-car="ferrari">View Details</a>
                     </div>
-                    <div class="car-price">$3,000,000</div>
-                    <a href="#" class="view-details">View Details</a>
                 </div>
-            </div>
-            
-            <!-- Car 6 -->
-            <div class="car-card" data-car="aston">
-                <div class="car-image">
-                    <img src="https://images.unsplash.com/photo-1632765854612-2dffe3dc8f55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Aston Martin DBS Superleggera in elegant British racing green">
-                </div>
-                <div class="car-details">
-                    <h3>Aston Martin DBS</h3>
-                    <div class="car-specs">
-                        <span><i class="fas fa-tachometer-alt"></i> 211 MPH</span>
-                        <span><i class="fas fa-bolt"></i> 715 HP</span>
+                
+                <!-- Car 3 -->
+                <div class="car-card" data-car="porsche">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1600259928706-4f18e30a2025?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="Porsche 911 GT3 RS in sleek white with racing details">
                     </div>
-                    <div class="car-price">$316,000</div>
-                    <a href="#" class="view-details">View Details</a>
+                    <div class="car-details">
+                        <h3>Porsche 911 GT3 RS</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 193 MPH</span>
+                            <span><i class="fas fa-bolt"></i> 520 HP</span>
+                        </div>
+                        <div class="car-price">$187,500</div>
+                        <a href="#" class="view-details" data-car="porsche">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Car 4 -->
+                <div class="car-card" data-car="mclaren">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1626668893630-1f7bb8945e23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="McLaren 720S in vibrant orange with dihedral doors open">
+                    </div>
+                    <div class="car-details">
+                        <h3>McLaren 720S</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 212 MPH</span>
+                            <span><i class="fas fa-bolt"></i> 710 HP</span>
+                        </div>
+                        <div class="car-price">$299,000</div>
+                        <a href="#" class="view-details" data-car="mclaren">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Car 5 -->
+                <div class="car-card" data-car="bugatti">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1550353127-b1234b9f3a2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Bugatti Chiron in two-tone blue and black design">
+                    </div>
+                    <div class="car-details">
+                        <h3>Bugatti Chiron</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 261 MPH</span>
+                            <span><i class="fas fa-bolt"></i> 1479 HP</span>
+                        </div>
+                        <div class="car-price">$3,000,000</div>
+                        <a href="#" class="view-details" data-car="bugatti">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Car 6 -->
+                <div class="car-card" data-car="aston">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1632765854612-2dffe3dc8f55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Aston Martin DBS Superleggera in elegant British racing green">
+                    </div>
+                    <div class="car-details">
+                        <h3>Aston Martin DBS</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 211 MPH</span>
+                            <span><i class="fas fa-bolt"></i> 715 HP</span>
+                        </div>
+                        <div class="car-price">$316,000</div>
+                        <a href="#" class="view-details" data-car="aston">View Details</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Car Detail Modals -->
-    <!-- Lamborghini Modal -->
-    <div id="lamborghini-modal" class="modal">
-        <div class="modal-content">
-            <div class="close-modal">&times;</div>
-            <div class="car-detail-header">
-                <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Lamborghini Aventador SVJ in dynamic driving position on a racetrack">
+    <!-- Car Detail Pages -->
+    
+    <!-- Lamborghini Detail Page -->
+    <div id="lamborghini-page" class="car-detail-page">
+        <div class="container">
+            <a href="#" class="back-button back-to-showroom">
+                <i class="fas fa-arrow-left"></i> Back to Showroom
+            </a>
+            
+            <div class="car-detail-container">
+                <div class="car-detail-gallery">
+                    <div class="main-car-image">
+                        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Lamborghini Aventador SVJ in dynamic driving position on a racetrack" id="lamborghini-main-img">
+                    </div>
+                    <div class="car-thumbnails">
+                        <div class="car-thumbnail active" data-img="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+                            <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Lamborghini Aventador SVJ front view">
+                        </div>
+                        <div class="car-thumbnail" data-img="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80">
+                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80" alt="Lamborghini Aventador SVJ side profile">
+                        </div>
+                        <div class="car-thumbnail" data-img="https://images.unsplash.com/photo-1601268859287-9cec8a741504?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80">
+                            <img src="https://images.unsplash.com/photo-1601268859287-9cec8a741504?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="Lamborghini Aventador SVJ rear view">
+                        </div>
+                        <div class="car-thumbnail" data-img="https://images.unsplash.com/photo-1555215274-d9dfd1622143?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80">
+                            <img src="https://images.unsplash.com/photo-1555215274-d9dfd1622143?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="Lamborghini Aventador SVJ interior">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="car-detail-info">
+                    <h2>Lamborghini Aventador SVJ</h2>
+                    <div class="car-detail-price">$517,000</div>
+                    
+                    <div class="car-detail-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <h4>Top Speed</h4>
+                            <p>217 MPH</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Horsepower</h4>
+                            <p>759 HP</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-cogs"></i>
+                            <h4>Transmission</h4>
+                            <p>7-Speed Automatic</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-rocket"></i>
+                            <h4>0-60 MPH</h4>
+                            <p>2.8 Seconds</p>
+                        </div>
+                    </div>
+                    
+                    <div class="car-description">
+                        <p>The Lamborghini Aventador SVJ represents the pinnacle of Lamborghini's engineering excellence. With its aerodynamically optimized design and powerful V12 engine, this limited edition supercar delivers an unparalleled driving experience. The SVJ (Super Veloce Jota) features advanced active aerodynamics, rear-wheel steering, and the most powerful V12 engine ever fitted to a Lamborghini.</p>
+                        <p>Only 900 units were produced worldwide, making this one of the most exclusive supercars available today. With its striking design and breathtaking performance, the Aventador SVJ is the ultimate expression of Lamborghini's "form follows function" philosophy.</p>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="action-button test-drive">Schedule Test Drive</button>
+                        <button class="action-button contact">Contact Sales</button>
+                    </div>
+                </div>
             </div>
-            <div class="car-detail-info">
-                <h2>Lamborghini Aventador SVJ</h2>
-                <div class="car-detail-price">$517,000</div>
-                
-                <div class="car-detail-specs">
-                    <div class="spec-item">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <h4>Top Speed</h4>
-                        <p>217 MPH</p>
+        </div>
+    </div>
+
+    <!-- Ferrari Detail Page -->
+    <div id="ferrari-page" class="car-detail-page">
+        <div class="container">
+            <a href="#" class="back-button back-to-showroom">
+                <i class="fas fa-arrow-left"></i> Back to Showroom
+            </a>
+            
+            <div class="car-detail-container">
+                <div class="car-detail-gallery">
+                    <div class="main-car-image">
+                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80" alt="Ferrari 488 Pista in motion on a coastal road" id="ferrari-main-img">
                     </div>
-                    <div class="spec-item">
-                        <i class="fas fa-bolt"></i>
-                        <h4>Horsepower</h4>
-                        <p>759 HP</p>
-                    </div>
-                    <div class="spec-item">
-                        <i class="fas fa-cogs"></i>
-                        <h4>Transmission</h4>
-                        <p>7-Speed Automatic</p>
-                    </div>
-                    <div class="spec-item">
-                        <i class="fas fa-rocket"></i>
-                        <h4>0-60 MPH</h4>
-                        <p>2.8 Seconds</p>
+                    <div class="car-thumbnails">
+                        <div class="car-thumbnail active" data-img="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80">
+                            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80" alt="Ferrari 488 Pista front view">
+                        </div>
+                        <div class="car-thumbnail" data-img="https://images.unsplash.com/photo-1601268859287-9cec8a741504?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80">
+                            <img src="https://images.unsplash.com/photo-1601268859287-9cec8a741504?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="Ferrari 488 Pista side profile">
+                        </div>
+                        <div class="car-thumbnail" data-img="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80">
+                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80" alt="Ferrari 488 Pista rear view">
+                        </div>
+                        <div class="car-thumbnail" data-img="https://images.unsplash.com/photo-1555215274-d9dfd1622143?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80">
+                            <img src="https://images.unsplash.com/photo-1555215274-d9dfd1622143?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="Ferrari 488 Pista interior">
+                        </div>
                     </div>
                 </div>
                 
-                <div class="car-description">
-                    <p>The Lamborghini Aventador SVJ represents the pinnacle of Lamborghini's engineering excellence. With its aerodynamically optimized design and powerful V12 engine, this limited edition supercar delivers an unparalleled driving experience. The SVJ (Super Veloce Jota) features advanced active aerodynamics, rear-wheel steering, and the most powerful V12 engine ever fitted to a Lamborghini.</p>
-                    <p>Only 900 units were produced worldwide, making this one of the most exclusive supercars available today. With its striking design and breathtaking performance, the Aventador SVJ is the ultimate expression of Lamborghini's "form follows function" philosophy.</p>
+                <div class="car-detail-info">
+                    <h2>Ferrari 488 Pista</h2>
+                    <div class="car-detail-price">$350,000</div>
+                    
+                    <div class="car-detail-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <h4>Top Speed</h4>
+                            <p>211 MPH</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Horsepower</h4>
+                            <p>711 HP</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-cogs"></i>
+                            <h4>Transmission</h4>
+                            <p>7-Speed Dual-Clutch</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-rocket"></i>
+                            <h4>0-60 MPH</h4>
+                            <p>2.85 Seconds</p>
+                        </div>
+                    </div>
+                    
+                    <div class="car-description">
+                        <p>The Ferrari 488 Pista is the track-focused evolution of the 488 GTB, incorporating technology derived directly from Ferrari's Formula 1 experience. "Pista" means "track" in Italian, and this car lives up to its name with exceptional performance and handling characteristics.</p>
+                        <p>With a twin-turbocharged V8 engine that won the International Engine of the Year award four years running, the 488 Pista delivers breathtaking acceleration and a spine-tingling exhaust note. Its aerodynamic enhancements provide increased downforce while maintaining the stunning beauty that defines Ferrari's design language.</p>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="action-button test-drive">Schedule Test Drive</button>
+                        <button class="action-button contact">Contact Sales</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Porsche Detail Page -->
+    <div id="porsche-page" class="car-detail-page">
+        <div class="container">
+            <a href="#" class="back-button back-to-showroom">
+                <i class="fas fa-arrow-left"></i> Back to Showroom
+            </a>
+            
+            <div class="car-detail-container">
+                <div class="car-detail-gallery">
+                    <div class="main-car-image">
+                        <img src="https://images.unsplash.com/photo-1600259928706-4f18e30a2025?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="Porsche 911 GT3 RS on a racetrack" id="porsche-main-img">
+                    </div>
+                    <div class="car-thumbnails">
+                        <div class="car-thumbnail active" data-img="https://images.unsplash.com/photo-1600259928706-4f18e30a2025?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80">
+                            <img src="https://images.unsplash.com/photo-1600259928706-4f18e30a2025?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="Porsche 911 GT3 RS front view">
+                        </div>
+                        <div class="car-thumbnail" data-img="https://images.unsplash.com/photo-1626668893630-1f7bb8945e23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=cople&w=1074&q=80">
+                            <img src="https://images.unsplash.com/photo-1626668893630-1f7bb8945e23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="Porsche 911 GT3 RS side profile">
+                        </div>
+                        <div class="car-thumbnail" data-img="https://images.unsplash.com/photo-1632765854612-2dffe3dc8f55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+                            <img src="https://images.unsplash.com/photo-1632765854612-2dffe3dc8f55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Porsche 911 GT3 RS rear view">
+                        </div>
+                        <div class="car-thumbnail" data-img="https://images.unsplash.com/photo-1550353127-b1234b9f3a2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+                            <img src="https://images.unsplash.com/photo-1550353127-b1234b9f3a2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Porsche 911 GT3 RS interior">
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="action-buttons">
-                    <button class="action-button test-drive">Schedule Test Drive</button>
-                    <button class="action-button contact">Contact Sales</button>
+                <div class="car-detail-info">
+                    <h2>Porsche 911 GT3 RS</h2>
+                    <div class="car-detail-price">$187,500</div>
+                    
+                    <div class="car-detail-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <h4>Top Speed</h4>
+                            <p>193 MPH</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Horsepower</h4>
+                            <p>520 HP</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-cogs"></i>
+                            <h4>Transmission</h4>
+                            <p>7-Speed PDK</p>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-rocket"></i>
+                            <h4>0-60 MPH</h4>
+                            <p>3.0 Seconds</p>
+                        </div>
+                    </div>
+                    
+                    <div class="car-description">
+                        <p>The Porsche 911 GT3 RS represents the ultimate track-focused evolution of the iconic 911. With its race-bred technology and precision engineering, this car delivers an exhilarating driving experience that bridges the gap between road and track.</p>
+                        <p>Featuring a high-revving naturally aspirated engine, advanced aerodynamics with a massive rear wing, and lightweight construction, the GT3 RS is designed for maximum performance. The interior is purpose-built with carbon fiber racing seats and a minimalist approach that emphasizes the car's racing pedigree.</p>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="action-button test-drive">Schedule Test Drive</button>
+                        <button class="action-button contact">Contact Sales</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -784,51 +982,53 @@
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Elite Motors</h3>
-                <p>We offer the world's most exclusive and high-performance vehicles to discerning clients who appreciate automotive excellence.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Elite Motors</h3>
+                    <p>We offer the world's most exclusive and high-performance vehicles to discerning clients who appreciate automotive excellence.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Showroom</h3>
+                    <ul>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Supercars</a></li>
+                        <li><a href="#">Hypercars</a></li>
+                        <li><a href="#">Limited Editions</a></li>
+                        <li><a href="#">Pre-Owned</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Vehicle Purchase</a></li>
+                        <li><a href="#">Financing</a></li>
+                        <li><a href="#">Maintenance</a></li>
+                        <li><a href="#">Customization</a></li>
+                        <li><a href="#">Insurance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Beverly Hills, CA 90210</p>
+                    <p><i class="fas fa-phone"></i> +1 (888) 555-1234</p>
+                    <p><i class="fas fa-envelope"></i> info@elitemotors.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 9AM-7PM, Sun: 10AM-5PM</p>
                 </div>
             </div>
             
-            <div class="footer-column">
-                <h3>Showroom</h3>
-                <ul>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Supercars</a></li>
-                    <li><a href="#">Hypercars</a></li>
-                    <li><a href="#">Limited Editions</a></li>
-                    <li><a href="#">Pre-Owned</a></li>
-                </ul>
+            <div class="copyright">
+                <p>&copy; 2023 Elite Motors. All rights reserved.</p>
             </div>
-            
-            <div class="footer-column">
-                <h3>Services</h3>
-                <ul>
-                    <li><a href="#">Vehicle Purchase</a></li>
-                    <li><a href="#">Financing</a></li>
-                    <li><a href="#">Maintenance</a></li>
-                    <li><a href="#">Customization</a></li>
-                    <li><a href="#">Insurance</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Beverly Hills, CA 90210</p>
-                <p><i class="fas fa-phone"></i> +1 (888) 555-1234</p>
-                <p><i class="fas fa-envelope"></i> info@elitemotors.com</p>
-                <p><i class="fas fa-clock"></i> Mon-Sat: 9AM-7PM, Sun: 10AM-5PM</p>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>© 2023 Elite Motors. All rights reserved.</p>
         </div>
     </footer>
 
@@ -852,37 +1052,71 @@
                 navLinks.classList.toggle('active');
             });
             
-            // Car detail modals
-            const carCards = document.querySelectorAll('.car-card');
-            const modals = document.querySelectorAll('.modal');
-            const closeButtons = document.querySelectorAll('.close-modal');
+            // Car detail page navigation
+            const showroomSection = document.getElementById('showroom');
+            const carPages = document.querySelectorAll('.car-detail-page');
+            const viewDetailsButtons = document.querySelectorAll('.view-details');
+            const backButtons = document.querySelectorAll('.back-to-showroom');
+            const navHome = document.querySelector('.nav-home');
             
-            carCards.forEach(card => {
-                card.addEventListener('click', function() {
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
                     const carType = this.getAttribute('data-car');
-                    const modal = document.getElementById(`${carType}-modal`);
-                    if (modal) {
-                        modal.style.display = 'block';
-                        document.body.style.overflow = 'hidden';
-                    }
+                    
+                    // Hide showroom and show car detail page
+                    showroomSection.style.display = 'none';
+                    document.getElementById(`${carType}-page`).classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
             
-            closeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const modal = this.closest('.modal');
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+            backButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Hide all car detail pages and show showroom
+                    carPages.forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    showroomSection.style.display = 'block';
+                    
+                    // Scroll to showroom
+                    window.scrollTo({ top: showroomSection.offsetTop - 100, behavior: 'smooth' });
                 });
             });
             
-            // Close modal when clicking outside
-            window.addEventListener('click', function(event) {
-                modals.forEach(modal => {
-                    if (event.target === modal) {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
+            navHome.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Hide all car detail pages and show showroom
+                carPages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                showroomSection.style.display = 'block';
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Car image gallery functionality
+            const carThumbnails = document.querySelectorAll('.car-thumbnail');
+            
+            carThumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    const mainImgId = this.closest('.car-detail-gallery').querySelector('.main-car-image img').id;
+                    const newSrc = this.getAttribute('data-img');
+                    
+                    // Update main image
+                    document.getElementById(mainImgId).src = newSrc;
+                    
+                    // Update active thumbnail
+                    this.parentElement.querySelectorAll('.car-thumbnail').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    this.classList.add('active');
                 });
             });
             
