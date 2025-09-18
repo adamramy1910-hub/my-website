@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Luxury Showroom</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black">
+        <!-- Header -->
+        <!-- Assuming ShowroomHeader component content would go here if available as pure HTML -->
+
+        <!-- Hero Section with Glass Window Effect -->
+        <section class="relative py-16 px-8">
+            <!-- Large floor-to-ceiling windows effect -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent opacity-50"></div>
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+            
+            <div class="relative max-w-7xl mx-auto text-center">
+                <div class="space-y-6 mb-16">
+                    <h1 class="text-4xl lg:text-6xl text-white">
+                        Welcome to <span class="text-red-500">Red Luxury</span>
+                    </h1>
+                    <p class="text-xl text-white/80 max-w-3xl mx-auto">
+                        Experience the ultimate collection of premium red vehicles in our state-of-the-art showroom. 
+                        Every car tells a story of passion, performance, and precision.
+                    </p>
+                </div>
+
+                <!-- Ambient red accent lighting effect -->
+                <div class="absolute -top-20 left-1/2 w-96 h-96 bg-red-500/10 rounded-full blur-3xl transform -translate-x-1/2 animate-pulse"></div>
+            </div>
+        </section>
+
+        <!-- Main Vehicle Display Area -->
+        <section id="vehicles" class="py-16 px-8">
+            <!-- Polished marble floor effect -->
+            <div class="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent"></div>
+            
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl text-white mb-4">
+                        Featured <span class="text-red-500">Collection</span>
+                    </h2>
+                    <p class="text-white/70">
+                        Discover our handpicked selection of premium red vehicles
+                    </p>
+                </div>
+
+                <!-- Car Display Grid -->
+                <div class="grid md:grid-cols-2 xl:grid-cols-2 gap-8 mb-16">
+                    <!-- The CarDisplay components would be rendered here dynamically in a real React app.
+                         For a static HTML representation, you would manually add each car's HTML structure.
+                         Here's an example for one car: -->
+                    <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1751077932652-b1237f626928?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWQlMjBzcG9ydHMlMjBjYXIlMjBsdXh1cnl8ZW58MXx8fHwxNzU4MjAxMTI1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="APEX GT-R Sport" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">APEX GT-R Sport</h3>
+                            <p class="text-red-500 text-xl mb-4">$89,500</p>
+                            <ul class="text-white/80 space-y-2">
+                                <li>650 HP Twin-Turbo V8</li>
+                                <li>0-60 in 2.8s</li>
+                                <li>Carbon Fiber Body</li>
+                                <li>Premium Red Leather</li>
+                            </ul>
+                            <button class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Repeat similar structure for other featuredCars -->
+                    <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1704786529856-7987a2c3fcbf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWQlMjBzZWRhbiUyMGNhcnxlbnwxfHx8fDE3NTgyMDExMjZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="LUXE Executive Sedan" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">LUXE Executive Sedan</h3>
+                            <p class="text-red-500 text-xl mb-4">$75,900</p>
+                            <ul class="text-white/80 space-y-2">
+                                <li>450 HP V6 Hybrid</li>
+                                <li>All-Wheel Drive</li>
+                                <li>Heated Red Seats</li>
+                                <li>Advanced Safety Suite</li>
+                            </ul>
+                            <button class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1611025106442-2f505ace8e79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWQlMjBTVVYlMjBjYXJ8ZW58MXx8fHwxNzU4MjAxMTI2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="TERRAIN Luxury SUV" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">TERRAIN Luxury SUV</h3>
+                            <p class="text-red-500 text-xl mb-4">$92,300</p>
+                            <ul class="text-white/80 space-y-2">
+                                <li>550 HP Supercharged V8</li>
+                                <li>7-Seat Configuration</li>
+                                <li>Off-Road Package</li>
+                                <li>Premium Sound System</li>
+                            </ul>
+                            <button class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1616269218527-451c383e65c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxyZWQlMjBjb252ZXJ0aWJsZSUyMGNhcnxlbnwxfHx8fDE3NTgyMDExMjZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="WIND Convertible" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">WIND Convertible</h3>
+                            <p class="text-red-500 text-xl mb-4">$68,750</p>
+                            <ul class="text-white/80 space-y-2">
+                                <li>380 HP Turbo V6</li>
+                                <li>Soft-Top Convertible</li>
+                                <li>Sport Suspension</li>
+                                <li>Red Interior Accents</li>
+                            </ul>
+                            <button class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Screens Section -->
+                <div class="mb-16">
+                    <h3 class="text-2xl text-white mb-8 text-center">
+                        Live <span class="text-red-500">Information</span>
+                    </h3>
+                    <!-- DigitalScreens component content would go here if available as pure HTML -->
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-xl text-white text-center">
+                        <p class="text-lg">Dynamic content and real-time updates will be displayed here.</p>
+                        <p class="text-sm text-white/60 mt-2">e.g., current stock, special offers, news feeds.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customization Section -->
+        <!-- CustomizationSection component content would go here if available as pure HTML -->
+        <section class="py-16 px-8 bg-gray-900">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="text-3xl text-white mb-4">
+                    Personalize Your <span class="text-red-500">Ride</span>
+                </h2>
+                <p class="text-white/70 max-w-2xl mx-auto mb-12">
+                    Tailor your luxury vehicle to your exact specifications with our advanced customization options.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl text-white mb-2">Exterior Colors</h3>
+                        <p class="text-white/70">Choose from a spectrum of exclusive red hues.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl text-white mb-2">Interior Finishes</h3>
+                        <p class="text-white/70">Select premium leather, stitching, and trim options.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl text-white mb-2">Performance Upgrades</h3>
+                        <p class="text-white/70">Enhance engine, suspension, and braking systems.</p>
+                    </div>
+                </div>
+                <button class="mt-12 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-colors duration-300">
+                    Start Customizing
+                </button>
+            </div>
+        </section>
+
+        <!-- Lounge Area -->
+        <!-- LoungeArea component content would go here if available as pure HTML -->
+        <section class="py-16 px-8 bg-black">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="text-3xl text-white mb-4">
+                    Relax in Our <span class="text-red-500">Exclusive Lounge</span>
+                </h2>
+                <p class="text-white/70 max-w-2xl mx-auto mb-12">
+                    Enjoy a luxurious and comfortable environment while you consider your next vehicle.
+                </p>
+                <div class="relative w-full h-64 bg-cover bg-center rounded-lg shadow-xl" style="background-image: url('https://images.unsplash.com/photo-1560439594-921227932629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBzaG93cm9vbSUyMGxvdW5nZXxlbnwxfHx8fDE3NTgyMDExMjgxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral');">
+                    <div class="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center">
+                        <p class="text-white text-2xl font-semibold">Premium refreshments and expert consultations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black border-t border-red-500/20 py-12 px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div>
+                        <div class="text-2xl text-white mb-4">
+                            <span class="text-red-500">RED</span>
+                            <span class="text-white/90">LUXURY</span>
+                        </div>
+                        <p class="text-white/70">
+                            Your premier destination for luxury red vehicles.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-white mb-4">Showroom</h4>
+                        <div class="space-y-2 text-white/70">
+                            <p>Mon-Fri: 9AM-8PM</p>
+                            <p>Saturday: 9AM-6PM</p>
+                            <p>Sunday: 11AM-5PM</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-white mb-4">Services</h4>
+                        <div class="space-y-2 text-white/70">
+                            <p>Test Drives</p>
+                            <p>Financing</p>
+                            <p>Trade-ins</p>
+                            <p>Maintenance</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-white mb-4">Contact</h4>
+                        <div class="space-y-2 text-white/70">
+                            <p>📞 (555) 123-4567</p>
+                            <p>📧 info@redluxury.com</p>
+                            <p>📍 123 Luxury Lane, City</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-red-500/20 mt-8 pt-8 text-center text-white/50">
+                    <p>&copy; 2024 Red Luxury Showroom. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
